@@ -5,13 +5,11 @@ This program aims to implement three core features of Continuous Integration - C
 
 # Requirements
 
-We assume here that you have a standard Linux machine (eg with Ubuntu), with Python installed.
-
 Below are the required packages:
 
-1. ***Flash***
+1. ***Flask***
 ```bash
-pip3 install lash
+pip3 install Flask
 ```
 2. ***os***
 ```bash
@@ -25,15 +23,26 @@ Requires import only
 ```bash
 Requires import only
 ```
-5. ***unittest***
+
+5. ***requests***
 ```bash
-Requires import only
+pip3 install requests
 ```
-6. ***NGROK***
+
+# Usage
+
+Step 1: Starting the Server
+Starting the server requires fetching a token with access to the GitHub repository. The server takes that as an input through standard input.
+
 ```bash
-curl -LO --tlsv1 https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-unzip ngrok-stable-linux-amd64.zip 
+python3 continousIntegration/main.py < TOKEN.txt
 ```
+
+Step 2: Running the Continuous Integration tool
+The server runs a check whenever a push to the repository has been made.
+
+Step 3: Verifying Commit Status
+GitHub displays the build status from the Continuous Integration tool using the GitHub commit status.
 
 # Statement of Contribution
 
@@ -84,4 +93,10 @@ Creation of Essence documentation.
 Documentation of DocString.
 ```
 
-# Properties Made to Acheive P+
+# Properties Made to Achieve P+
+
+1. The program logs previous status.
+
+2. All of our Issues are linked to a commit.  
+
+3. We have implemented a Continous Integration (CI) tool, using GitHub Actions. The tool is run every time someone pushes to or makes a Pull Request towards the main branch. It then runs a linter and our unit tests in order to spot errors within the code (syntax- or runtime errors) but also errors regarding assignment specifications. The tool runs Python 3.10 and Ubuntu Linux.
